@@ -1,0 +1,37 @@
+﻿Bakgrund
+
+Uppgiften handlar om att bygga ett system för att hantera frånvaro för anställda i ett företag. 
+Du får en nulägesfil, och två importfiler som systemet ska läsa in i stigande kalendermässig ordning för att uppdatera nuläget.
+Affärsreglerna beskrivna nedan ska appliceras givet datat i filerna.
+Enkla former av rapporter ska kunna tas från systemet.
+
+Uppgift
+
+Systemet ska hantera frånvaro som ett antal poster kopplat till ett anställnings-Id och hantera frånvaro för flera anställda. 
+
+Implementera stöd i system för att först läsa in frånvaron i filen StartData.csv, med stöd för nedan givna affärsregler och sedan 
+läsa in kompletteringsfilerna i datummässig ordning med äldsta filen först
+
+Givna affärsregler nedan skall appliceras efter varje filinläsning. 
+
+Affärsregler: 
+- Framtida frånvaro räknat från fildatum som finns i StartData-filen men inte finns angiven i en kompletteringsfil gör att frånvaro-poster i framtiden tas bort
+  Exempel: Fil 1 med fildatum 2019-11-01 anger att frånvaro för en individ är 2019-10-15 till 2019-12-31, fil 2 med fildatum 2019-12-01 anger att 
+  frånvaro är 2019-11-01 till 2019-12-15 --> Ta bort frånvaron som i fil 1 rapporterades 2019-12-16 till 2019-12-31 då den nu inte längre skall anses gälla. 
+
+- Kompletteringsfiler skall uppdatera frånvaroprocent på redan tidigare rapporterade frånvaroposter
+	Exempel: Fil 1 med fildatum 2019-11-01 anger att frånvaro för 2019-12-01 är 50%, fil 2 med fildatum 2019-11-15 anger att frånvaro för 2019-12-01 är 75%, då skall nuvärdet
+	för frånvaron 2019-11-15 vara 50% efter inläsning av fil 1 och nuvärdet för samma dag vara 75% efter inläsning av fil 2. 
+
+- Frånvarotyp i filerna ska tolkas enligt nedan: 
+	- Typ 1 ska översättas till typ A
+	- Typ 2 och Typ 3 ska översättas till typ B
+
+Rapporter:
+När nuläget är kompletterat med data från de två kompletteringsfilerna ska följande rapporter tas ut: 
+- Vilka anställnings-id:n är frånvarande någon gång under mars månad med minst 85% frånvaro?
+- Hur många anställda är frånvarande någon gång under mars med frånvarotyp A?
+- Hur många anställda har en sammanhängande frånvaro om minst 5 dagar under april oavsett typ och procent?
+
+Testning
+- Om du har erfarenhet av enhetstestning så gör gärn koden testbar och skriv enhetstester där du anser det lämpligt.
