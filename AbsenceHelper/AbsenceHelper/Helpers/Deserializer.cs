@@ -31,7 +31,7 @@ namespace AbsenceHelper.Helpers
                 DeserializeXML(Resource.XMLFileB)
             };
 
-            return xmlList.OrderBy(d => Convert.ToDateTime(d.FileDate).Date).ToList();
+            return xmlList.OrderBy(d => d.FileDate).ToList();
         }
 
         private static Data DeserializeXML(string xmlFile)

@@ -1,6 +1,6 @@
 ﻿using AbsenceHelper.Helpers;
+
 using System;
-using System.Linq;
 
 namespace AbsenceHelper
 {
