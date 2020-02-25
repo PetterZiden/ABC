@@ -11,6 +11,8 @@ namespace AbsenceHelper
             var csvList = Deserializer.GetCsvList();
             var xmlList = Deserializer.GetXmlLists();
 
+            csvList = AddAbsenceFromXml();
+
             Console.WriteLine($".....");
         }
     }
