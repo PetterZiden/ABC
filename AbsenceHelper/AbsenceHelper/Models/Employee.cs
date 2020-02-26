@@ -19,6 +19,6 @@ namespace AbsenceHelper.Models
         public string TypeId { get; set; }
 
         [XmlElement("Percentage")]
-        public string Percentage { get; set; }
+        public decimal Percentage { get; set; }
     }
 }
