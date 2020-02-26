@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AbsenceHelper.Models;
 
 namespace AbsenceHelper.Helpers
@@ -53,12 +54,23 @@ namespace AbsenceHelper.Helpers
 
         private static List<AbsenceData> AddXmlListToCsvListAndUpdatePercentage(List<AbsenceData> csvList, List<AbsenceData> xmlList)
         {
-            // !?!!!??!?!?!?!
-            var tempList = xmlList.Where(x => csvList.Any(y => y.EmployeeId == x.EmployeeId));
+            // Funkar
+            var addNewEmployeeToList = xmlList.Where(x => !csvList.Select(c => c.EmployeeId).Contains(x.EmployeeId));
+
+            // Funkar inte
+            var addToList = xmlList.Where(x => csvList.Any(c => c.EmployeeId == x.EmployeeId && c.Date != x.Date));
+
+            // Verkar Fungera
+            var updatePercentage = xmlList.Where(x => csvList.Any(c => c.EmployeeId == x.EmployeeId && c.Date == x.Date && c.Percentage != x.Percentage));
+
 
             return csvList;
         }
 
+        //private static AbsenceData UpdatePercentage(AbsenceData absence)
+        //{
+
+        //}
       
     }
 }
