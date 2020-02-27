@@ -14,7 +14,7 @@ namespace AbsenceHelper.Helpers
 
             foreach (var xmlData in xmlList)
             {
-                csvList = AddXmlListToCsvListAndUpdatePercentage(csvList, CreateAbsenceListFromXML(xmlData));
+                csvList = AddXmlListToCsvListAndUpdatePercentage(csvList, CreateAbsenceListFromXml(xmlData));
             }
 
             return csvList;
@@ -39,11 +39,11 @@ namespace AbsenceHelper.Helpers
             return xmlList;
         }
 
-        private static List<AbsenceData> CreateAbsenceListFromXML(Data xmLlist)
+        private static List<AbsenceData> CreateAbsenceListFromXml(Data xmlList)
         {
             var absenceList = new List<AbsenceData>();
 
-            foreach (var employee in xmLlist.Employees)
+            foreach (var employee in xmlList.Employees)
             {
                 absenceList.AddRange(Mapper.Mapper.MapEmployeeToAbsenceData(employee));
             }

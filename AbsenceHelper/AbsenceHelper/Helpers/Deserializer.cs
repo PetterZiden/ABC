@@ -26,14 +26,14 @@ namespace AbsenceHelper.Helpers
         {
             var xmlList = new List<Data>
             {
-                DeserializeXML(Resource.XMLFileA),
-                DeserializeXML(Resource.XMLFileB)
+                DeserializeXml(Resource.XMLFileA),
+                DeserializeXml(Resource.XMLFileB)
             };
 
             return xmlList.OrderBy(d => d.FileDate).ToList();
         }
 
-        private static Data DeserializeXML(string xmlFile)
+        private static Data DeserializeXml(string xmlFile)
         {
             var serializer = new XmlSerializer(typeof(Data));
             using var reader = new FileStream($"{GetPath()}{xmlFile}", FileMode.Open);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AbsenceHelper.Models
+﻿namespace AbsenceHelper.Models
 {
     public class StartData
     {
