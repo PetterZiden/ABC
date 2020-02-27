@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using AbsenceHelper.Models;
@@ -9,7 +8,7 @@ namespace AbsenceHelper.Helpers
 {
     public static class AbsenceHelper
     {
-        public static List<AbsenceData> AddAbsenceFromXml(List<AbsenceData> csvList, List<Data> xmlList)
+        public static List<AbsenceData> UpdateAbsenceFromXml(List<AbsenceData> csvList, List<Data> xmlList)
         {
             xmlList = RemoveIncorrectAbsenceFromXmlLists(xmlList);
 

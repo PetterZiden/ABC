@@ -1,6 +1,7 @@
 ﻿using AbsenceHelper.Helpers;
-
+using AbsenceHelper.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AbsenceHelper
@@ -9,10 +10,8 @@ namespace AbsenceHelper
     {
         public static void Main(string[] args)
         {
-            var csvList = Deserializer.GetCsvList();
-            var xmlList = Deserializer.GetXmlLists();
-
-            csvList = Helpers.AbsenceHelper.AddAbsenceFromXml(csvList, xmlList);
+            // Retrieve and update CsvList
+            var csvList = Helpers.AbsenceHelper.UpdateAbsenceFromXml(Deserializer.GetCsvList(), Deserializer.GetXmlLists());
 
             // Report 1
             Console.WriteLine($"- Vilka anställnings-id:n är frånvarande någon gång under mars månad med minst 85% frånvaro?");
@@ -37,9 +36,16 @@ namespace AbsenceHelper
             // Funkar inte
             // Report 3
             Console.WriteLine($"- Hur många anställda har en sammanhängande frånvaro om minst 5 dagar under april oavsett typ och procent?");
-            var report3 = csvList.Where(p => p.Date.Month == 4).Select(c => c.EmployeeId).Distinct().Count();
+            var report3 = csvList.Where(p => p.Date.Month == 4);
 
             Console.WriteLine("asdfasd");
+        }
+
+        // ??"???!?!?!??!
+        private int getDaterange(List<AbsenceData> list)
+        {
+            
+            return 0;
         }
     }
 }
