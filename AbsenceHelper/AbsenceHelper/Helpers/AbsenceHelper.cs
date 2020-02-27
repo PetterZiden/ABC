@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using AbsenceHelper.Models;
@@ -12,11 +13,10 @@ namespace AbsenceHelper.Helpers
         {
             xmlList = RemoveIncorrectAbsenceFromXmlLists(xmlList);
 
-            var firstXmlAbsenceList = CreateAbsenceListFromXML(xmlList[0]);
-            var secondXmlAbsenceList = CreateAbsenceListFromXML(xmlList[1]);
-
-            csvList = AddXmlListToCsvListAndUpdatePercentage(csvList, firstXmlAbsenceList);
-            csvList = AddXmlListToCsvListAndUpdatePercentage(csvList, secondXmlAbsenceList);
+            foreach (var xmlData in xmlList)
+            {
+                csvList = AddXmlListToCsvListAndUpdatePercentage(csvList, CreateAbsenceListFromXML(xmlData));
+            }
 
             return csvList;
         }
@@ -54,23 +54,19 @@ namespace AbsenceHelper.Helpers
 
         private static List<AbsenceData> AddXmlListToCsvListAndUpdatePercentage(List<AbsenceData> csvList, List<AbsenceData> xmlList)
         {
-            // Funkar
-            var addNewEmployeeToList = xmlList.Where(x => !csvList.Select(c => c.EmployeeId).Contains(x.EmployeeId));
+            // Add absence for new employee and dates for existing employees
+            csvList.AddRange(xmlList.Where(x => !csvList.Any(c => c.EmployeeId == x.EmployeeId && c.Date == x.Date)));
 
-            // Funkar inte
-            var addToList = xmlList.Where(x => csvList.Any(c => c.EmployeeId == x.EmployeeId && c.Date != x.Date));
-
-            // Verkar Fungera
-            var updatePercentage = xmlList.Where(x => csvList.Any(c => c.EmployeeId == x.EmployeeId && c.Date == x.Date && c.Percentage != x.Percentage));
-
+            // Update percentage from xmlList
+            foreach (var x in xmlList)
+            {
+                foreach (var c in csvList.Where(c => c.EmployeeId == x.EmployeeId && c.Date == x.Date && c.Percentage != x.Percentage))
+                {
+                    c.Percentage = x.Percentage;
+                }
+            }
 
             return csvList;
         }
-
-        //private static AbsenceData UpdatePercentage(AbsenceData absence)
-        //{
-
-        //}
-      
     }
 }

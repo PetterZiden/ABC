@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace AbsenceHelper.Models
 {
-    [Serializable()]
+    [Serializable]
     public class Employee
     {
         [XmlAttribute("EmployeeId")]

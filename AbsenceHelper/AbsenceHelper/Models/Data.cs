@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace AbsenceHelper.Models
 {
-    [Serializable()]
+    [Serializable]
     public class Data
     {
         [XmlElement("FileDate")]
