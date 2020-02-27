@@ -7,7 +7,7 @@ namespace AbsenceHelper
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             // Retrieve and update CsvList
             var csvList = Helpers.AbsenceHelper.UpdateAbsenceFromXml(Deserializer.GetCsvList(), Deserializer.GetXmlLists());
