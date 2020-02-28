@@ -7,7 +7,7 @@ namespace AbsenceHelper.Helpers
 {
     public static class DateHelper
     {
-        public static bool CheckSequentialDate(IEnumerable<AbsenceData> list, int numberOfDays)
+        public static bool SequentialDateValidation(IEnumerable<AbsenceData> list, int numberOfDays)
         {
             if (list.Count() < numberOfDays)
             {

@@ -38,7 +38,7 @@ namespace AbsenceHelper
             // Report 3
             Console.WriteLine($"Hur många anställda har en sammanhängande frånvaro om minst 5 dagar under april oavsett typ och procent?");
 
-            var report3 = csvList.Where(p => p.Date.Month == 4).GroupBy(c => c.EmployeeId).Where(a => DateHelper.CheckSequentialDate(a.Select(b => b), 5)).Count();
+            var report3 = csvList.Where(p => p.Date.Month == 4).GroupBy(c => c.EmployeeId).Where(a => DateHelper.SequentialDateValidation(a.Select(b => b), 5)).Count();
 
             Console.WriteLine($"    - {report3} anställda hade minst 5 dagar sammanhängande frånvaro under denna period" + Environment.NewLine);
 

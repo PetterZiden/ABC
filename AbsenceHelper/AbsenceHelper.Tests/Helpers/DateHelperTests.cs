@@ -25,7 +25,7 @@ namespace AbsenceHelper.Tests.Helpers
         {
             var absenceList = GetAbsenceData(date1, date2, date3, date4, date5);
 
-            var result = AbsenceHelper.Helpers.DateHelper.CheckSequentialDate(absenceList, numberOfDays);
+            var result = AbsenceHelper.Helpers.DateHelper.SequentialDateValidation(absenceList, numberOfDays);
 
             Assert.Equal(expectedResult, result);
         }
