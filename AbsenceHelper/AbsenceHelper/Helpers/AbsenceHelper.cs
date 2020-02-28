@@ -10,8 +10,11 @@ namespace AbsenceHelper.Helpers
     {
         public static List<AbsenceData> UpdateAbsenceFromXml(List<AbsenceData> csvList, List<Data> xmlList)
         {
-            xmlList = RemoveIncorrectAbsenceFromXmlLists(xmlList);
-
+            for (int i = 0; i < xmlList.Count() - 1; i++)
+            {
+                xmlList[i] = RemoveIncorrectAbsenceFromXmlLists(xmlList[i], xmlList[i + 1]);
+            }
+            
             foreach (var xmlData in xmlList)
             {
                 csvList = AddXmlListToCsvListAndUpdatePercentage(csvList, CreateAbsenceListFromXml(xmlData));
@@ -20,11 +23,11 @@ namespace AbsenceHelper.Helpers
             return csvList;
         }
 
-        private static List<Data> RemoveIncorrectAbsenceFromXmlLists(List<Data> xmlList)
+        private static Data RemoveIncorrectAbsenceFromXmlLists(Data firstXmlList, Data secondXmlList)
         {
-            foreach (var old in xmlList[0].Employees)
+            foreach (var old in firstXmlList.Employees)
             {
-                foreach (var latest in xmlList[1].Employees)
+                foreach (var latest in secondXmlList.Employees)
                 {
                     if (old.EmployeeId == latest.EmployeeId)
                     {
@@ -36,7 +39,7 @@ namespace AbsenceHelper.Helpers
                 }
             }
 
-            return xmlList;
+            return firstXmlList;
         }
 
         private static List<AbsenceData> CreateAbsenceListFromXml(Data xmlList)

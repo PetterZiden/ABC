@@ -7,7 +7,7 @@ namespace AbsenceHelper.Helpers
 {
     public static class DateHelper
     {
-        public static bool DateChecker(IEnumerable<AbsenceData> list, int numberOfDays)
+        public static bool CheckSequentialDate(IEnumerable<AbsenceData> list, int numberOfDays)
         {
             if (list.Count() < numberOfDays)
             {
@@ -16,12 +16,17 @@ namespace AbsenceHelper.Helpers
 
             var counter = 1;
 
-            for (int i = 0; i < list.Count(); i++)
+            for (int i = 0; i < list.Count() - 1; i++)
             {
                 if (list.ElementAt(i).Date.AddDays(1) == list.ElementAt(i + 1).Date)
                 {
                     counter++;
                 }
+                else
+                {
+                    counter = 1;
+                }
+
                 if (counter == numberOfDays)
                 {
                     return true;

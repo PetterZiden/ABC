@@ -14,7 +14,7 @@ namespace AbsenceHelper.Helpers
     {
         public static List<AbsenceData> GetCsvList()
         {
-            using var reader = new StreamReader($"{GetPath()}{Resource.CSVFile}");
+            using var reader = new StreamReader($"{GetFolderPath()}{Resource.CSVFile}");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.Delimiter = ";";
             var data = csv.GetRecords<StartData>().ToList();
@@ -36,13 +36,13 @@ namespace AbsenceHelper.Helpers
         private static Data DeserializeXml(string xmlFile)
         {
             var serializer = new XmlSerializer(typeof(Data));
-            using var reader = new FileStream($"{GetPath()}{xmlFile}", FileMode.Open);
+            using var reader = new FileStream($"{GetFolderPath()}{xmlFile}", FileMode.Open);
             var data = (Data)serializer.Deserialize(reader);
 
             return data;
         }
 
-        private static string GetPath()
+        private static string GetFolderPath()
         {
             return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         }

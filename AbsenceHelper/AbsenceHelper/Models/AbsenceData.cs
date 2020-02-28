@@ -4,7 +4,7 @@ namespace AbsenceHelper.Models
 {
     public class AbsenceData
     {
-        public int EmployeeId { get; set; }
+        public short EmployeeId { get; set; }
 
         public DateTime Date { get; set; }
 
