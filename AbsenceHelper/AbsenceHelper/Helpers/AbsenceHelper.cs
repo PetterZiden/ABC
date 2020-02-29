@@ -10,7 +10,7 @@ namespace AbsenceHelper.Helpers
     {
         public static List<AbsenceData> UpdateAbsenceFromXml(List<AbsenceData> csvList, List<Data> xmlList)
         {
-            for (int i = 0; i < xmlList.Count() - 1; i++)
+            for (var i = 0; i < xmlList.Count() - 1; i++)
             {
                 xmlList[i] = RemoveIncorrectAbsenceFromXmlLists(xmlList[i], xmlList[i + 1]);
             }

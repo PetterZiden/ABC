@@ -16,7 +16,7 @@ namespace AbsenceHelper.Helpers
 
             var counter = 1;
 
-            for (int i = 0; i < list.Count() - 1; i++)
+            for (var i = 0; i < list.Count() - 1; i++)
             {
                 if (list.ElementAt(i).Date.AddDays(1) == list.ElementAt(i + 1).Date)
                 {
